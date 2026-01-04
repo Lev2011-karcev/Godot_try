@@ -1,16 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2uwnj2tjx6sa"]
+[gd_scene load_steps=9 format=3 uid="uid://d2uwnj2tjx6sa"]
 
 [ext_resource type="ArrayMesh" uid="uid://bidfcwm8gpjcw" path="res://assets/untitled.obj.obj" id="1_yp3w7"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ftet"]
-albedo_color = Color(0.106678, 0.615456, 0.809721, 1)
-metallic_specular = 0.0
-metallic_texture_channel = 1
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_0ftet"]
-material = SubResource("StandardMaterial3D_0ftet")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yp3w7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ftet"]
 
@@ -25,22 +15,11 @@ size = Vector3(5.60986, 1.83496, 3.125)
 [sub_resource type="BoxShape3D" id="BoxShape3D_oshgy"]
 size = Vector3(6.19519, 2.08545, 2.71045)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yp3w7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ur565"]
+
 [node name="Node3D" type="Node3D"]
-
-[node name="GDExample" type="GDExample" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6554, 453.552, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GDExample"]
-transform = Transform3D(6.27472, 0.0130212, -0.00467177, -0.0130468, 6.2565, 0.0172993, 0.004585, -0.0167902, 6.44259, -0.0653114, -475.876, 0.00330353)
-mesh = SubResource("CapsuleMesh_0ftet")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GDExample"]
-transform = Transform3D(6.37491, 0, 0, 0, 8.65547, 0, 0, 0, 7.03749, 0, -475.919, 0)
-shape = SubResource("CapsuleShape3D_yp3w7")
-
-[node name="Camera3D" type="Camera3D" parent="GDExample"]
-transform = Transform3D(0.999611, 0.000988858, -0.0278869, 0.00973307, 0.924253, 0.381657, 0.026152, -0.381779, 0.923883, -0.120247, -465.622, 8.55574)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0893876, 0.950115, -0.298815, -0.843262, 0.231847, 0.48493, 0.530018, 0.208633, 0.82192, -23.3862, 5.70023, 42.5631)
@@ -78,5 +57,17 @@ shape = SubResource("BoxShape3D_vunb5")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.511934, -30.8476, 19.0367)
 shape = SubResource("BoxShape3D_oshgy")
+
+[node name="GDExample" type="GDExample" parent="."]
+transform = Transform3D(3.3586, 0, 0, 0, 6.41106, 0, 0, 0, 5.80902, -28.5729, -24.6104, 8.16667)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GDExample"]
+shape = SubResource("CapsuleShape3D_yp3w7")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="GDExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.418532, -0.496905)
+shape = SubResource("BoxShape3D_ur565")
+
+[node name="Camera3D" type="Camera3D" parent="GDExample/SpringArm3D"]
 
 [connection signal="body_entered" from="DieZone" to="DieZone" method="_on_body_entered"]
